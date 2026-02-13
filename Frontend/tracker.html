@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diasense | Blood Glucose Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo">Diasense</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tracker.html" class="active">Tracker</a>
+        <a href="diet.html">Diet</a>
+        <a href="exercise.html">Exercise</a>
+        <a href="symptoms.html">Symptoms</a>
+        <a href="awareness.html">Awareness</a>
+        <a href="help.html">Help</a>
+    </nav>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <h1>Blood Glucose Tracker</h1>
+    <p>Log and monitor your blood sugar levels daily</p>
+</section>
+
+<!-- TRACKER FORM -->
+<section class="tracker-form">
+    <h2>Add New Reading</h2>
+
+    <form id="trackerForm">
+
+        <div class="form-group">
+            <label>Date</label>
+            <input type="date" id="date" required>
+        </div>
+
+        <div class="form-group">
+            <label>Time</label>
+            <input type="time" id="time" required>
+        </div>
+
+        <div class="form-group">
+            <label>Glucose Level (mg/dL)</label>
+            <input type="number" id="value" placeholder="e.g. 120" required>
+        </div>
+
+        <div class="form-group">
+            <label>Reading Type</label>
+            <select id="type" required>
+                <option value="">Select reading type</option>
+                <option>Fasting</option>
+                <option>Post Breakfast</option>
+                <option>Pre Lunch</option>
+                <option>Post Lunch</option>
+                <option>Pre Dinner</option>
+                <option>Post Dinner</option>
+            </select>
+        </div>
+
+        <div class="form-group full">
+            <label>Notes (optional)</label>
+            <textarea id="notes" placeholder="Any symptoms or notes..."></textarea>
+        </div>
+
+        <button type="submit" class="btn">Add Reading</button>
+
+    </form>
+</section>
+
+<!-- HISTORY TABLE -->
+<section class="tracker-history">
+    <h2>Recent Readings</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Value</th>
+                <th>Type</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="historyBody">
+            <!-- Data will come from backend later -->
+        </tbody>
+    </table>
+</section>
+
+<!-- INFO CARD -->
+<section class="info-card">
+    <h3>Understanding Your Readings</h3>
+    <ul>
+        <li><span class="dot normal"></span> Normal: 70 – 140 mg/dL</li>
+        <li><span class="dot high"></span> High: Above 180 mg/dL</li>
+        <li><span class="dot low"></span> Low: Below 70 mg/dL</li>
+    </ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Diasense | Stay Healthy</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="js/tracker.js"></script>
+<script src="js/auth.js"></script>
+<script>
+    protectPage();
+</script>
+
+</body>
+</html>

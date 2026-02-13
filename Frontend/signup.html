@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diasense | Register</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">Diasense</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="tracker.html">Tracker</a>
+            <a href="diet.html">Diet</a>
+            <a href="exercise.html">Exercise</a>
+            <a href="symptoms.html">Symptoms</a>
+            <a href="help.html">Help</a>
+        </nav>
+    </header>
+
+    <!-- SIGNUP FORM -->
+    <section class="auth-container">
+        <h1>Create Account</h1>
+        <p>Join Diasense and start monitoring your health</p>
+
+        <form  id="signupForm" class="auth-form">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email address" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p class="auth-link">
+            Already have an account?
+            <a href="login.html">Login here</a>
+        </p>
+    </section>
+<script src="js/auth.js"></script>
+
+</body>
+</html>
