@@ -1,29 +1,29 @@
-const db = require("./db");
-
 const express = require("express");
 const cors = require("cors");
-
-const trackerRoutes = require("./routes/trackerRoutes");
-console.log("Tracker routes loaded");
+const db = require("./db/db");
 
 const app = express();
-
-
-
 app.use(cors());
 app.use(express.json());
 
-
-
-app.use("/api/tracker", trackerRoutes);
-
-
 app.get("/", (req, res) => {
-    res.send("Diasense backend running");
+  res.send("Backend is running 🚀");
 });
 
-const PORT = 5000;
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
+});
+
+app.get("/data", (req, res) => {
+  const sql = "SELECT * FROM glucose_readings ORDER BY created_at DESC";
+
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error fetching data");
+    } else {
+      res.json(result);
+    }
+  });
 });

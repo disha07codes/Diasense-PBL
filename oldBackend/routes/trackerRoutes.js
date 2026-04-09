@@ -2,6 +2,8 @@ console.log("trackerRoutes file loaded");
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+const { exec } = require("child_process");
+const path = require("path");
 
 router.get("/test", (req, res) => {
     res.json({ message: "Tracker route working" });
@@ -56,6 +58,45 @@ router.get("/:userId", (req, res) => {
             return res.status(500).json({ error: "Database error" });
         }
         res.json(results);
+    });
+});
+
+router.post("/predict", (req, res) => {
+
+    const {
+        pregnancies,
+        glucose,
+        bp,
+        skin,
+        insulin,
+        bmi,
+        dpf,
+        age
+    } = req.body;
+
+    // Path to predict.py
+    const scriptPath = path.join(__dirname, "..", "..", "ml_model", "predict.py");
+
+   const command = `python3 "${scriptPath}" ${pregnancies} ${glucose} ${bp} ${skin} ${insulin} ${bmi} ${dpf} ${age}`;
+
+    exec(command, (error, stdout, stderr) => {
+
+        if (error) {
+            console.error("Prediction error:", error);
+            return res.status(500).json({ error: "Prediction failed" });
+        }
+
+        const risk = stdout.trim();
+
+        let suggestion = "";
+
+        if (risk === "High Risk") {
+            suggestion = "Maintain strict diet, reduce sugar intake, exercise daily and consult a doctor.";
+        } else {
+            suggestion = "Continue healthy lifestyle and monitor glucose regularly.";
+        }
+
+        res.json({ risk, suggestion });
     });
 });
 
